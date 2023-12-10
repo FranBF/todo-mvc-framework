@@ -10,9 +10,11 @@ class User extends UserModel{
     public string $name = '';
     public string $email = '';
     public string $password = '';
+    public int $status = 1;
 
     public function save(){
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->status = 1;
         return parent::save();
     }
 
@@ -33,7 +35,7 @@ class User extends UserModel{
     }
 
     public function attributes(): array{
-        return ['name', 'email', 'password'];
+        return ['name', 'email', 'password', 'status'];
     }
 
     public function getDisplayName(): string{

@@ -19,7 +19,7 @@ abstract class DbModel extends Model{
         $attributes = $this->attributes();
         $params = array_map(fn($attr) => ":$attr", $attributes);
         $stmt = self::prepare("
-        INSERT INTO $tableName (".implode(',', $attributes) .", status) VALUES(".implode(',', $params).", 1)");
+        INSERT INTO $tableName (".implode(',', $attributes) .") VALUES(".implode(',', $params).")");
         
         foreach($attributes as $attribute){
             $stmt->bindValue(":$attribute", $this->{$attribute});
